@@ -29,6 +29,7 @@ grid-template-columns:
 
 import { Grid, GridItem, Show } from "@chakra-ui/react"
 import { Fragment } from 'react'
+import NavBar from "./components/2_NavBar/NavBar"
 function App() {
   return (
     <Fragment>
@@ -49,7 +50,10 @@ function App() {
       // templateRows="100px 1fr 100px"
       // gap={4}
       >
-        <GridItem area={'nav'} style={{ backgroundColor: 'lightgreen' }}>Nav</GridItem>
+
+        <GridItem area={'nav'}>      <NavBar />
+        </GridItem>
+        {/* show will only render on correct size */}
         <Show above="lg">
           <GridItem area={'aside'} style={{ backgroundColor: 'lightcoral' }}>Aside</GridItem>
         </Show>
