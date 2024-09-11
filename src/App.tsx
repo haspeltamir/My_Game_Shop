@@ -51,7 +51,8 @@ function App() {
       // gap={4}
       >
 
-        <GridItem area={'nav'}>      <NavBar />
+        <GridItem area={'nav'}>
+          <NavBar />
         </GridItem>
         {/* show will only render on correct size */}
         <Show above="lg">

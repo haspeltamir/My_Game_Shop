@@ -1,6 +1,7 @@
 import { HStack, Image, Text } from '@chakra-ui/react';
 import { Fragment, ReactNode } from 'react';
 import logo from '../../assets/Logo/logo.webp';
+import ChangeColorMode from '../3_ColorMode_Switch/ChangeColorMode';
 interface Props {
     item?: string;
     children?: ReactNode
@@ -16,10 +17,21 @@ function NavBar(
             <div>
                 {item}
             </div>
-            <HStack>
+
+            {/* We use horizontal stack Because we want to have a switch,
+            And next to it, a label.  */}
+            <HStack justifyContent={"space-between"} p={10} bg="gray.200"
+            >
+
                 <Image src={logo} alt="logo" boxSize="60px" />
+
                 {/* <Image src="https://via.placeholder.com/150" alt="placeholder" /> */}
                 <Text fontSize="2xl">My Game Shop</Text>
+
+                {/* 
+                add the ChangeColorMode component to the NavBar component on the right side of the logo.
+                */}
+                <ChangeColorMode />
 
             </HStack>
         </Fragment>
