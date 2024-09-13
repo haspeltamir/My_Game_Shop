@@ -7,9 +7,18 @@
 
 
     ## Used Packages:
-    - Chakra UI
-        npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+        For Styling:
+        - Chakra UI
+            npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+
+        For Routing:
+        - React Router Dom
+            npm i react-router-dom
+
+        For API Calls:
+        - Axios
+            npm i axios
 
 
     ## npm Command
-    - npm install chakra-ui
+    - npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion react-router-dom axios

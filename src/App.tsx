@@ -30,6 +30,7 @@ grid-template-columns:
 import { Grid, GridItem, Show } from "@chakra-ui/react"
 import { Fragment } from 'react'
 import NavBar from "./components/2_NavBar/NavBar"
+import GameGrid from "./components/4_GameGrid/GameGrid"
 function App() {
   return (
     <Fragment>
@@ -58,7 +59,9 @@ function App() {
         <Show above="lg">
           <GridItem area={'aside'} style={{ backgroundColor: 'lightcoral' }}>Aside</GridItem>
         </Show>
-        <GridItem area={'main'} style={{ backgroundColor: 'yellow' }}>Main</GridItem>
+        <GridItem area={'main'} style={{ backgroundColor: 'yellow' }}>
+          <GameGrid />
+        </GridItem>
       </Grid>
 
     </Fragment>
