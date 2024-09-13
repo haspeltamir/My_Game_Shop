@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
-interface Game {
+export interface Game {
   //each game object inside the games Array
   id: number;
   name: string;
-  // background_image: string;
+  background_image: string;
   // released: string;
   // rating: number;
 }
 
-interface FacetGamesResponse {
+export interface FacetGamesResponse {
   //the games Array response from the API
   count: number;
   // next: string;

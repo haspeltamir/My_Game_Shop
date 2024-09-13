@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
-import { Text } from '@chakra-ui/react';
+import { SimpleGrid, Text } from '@chakra-ui/react';
 import useGames from '../../hooks/useGames';
+import GameCard from '../5_Game_Card/GameCard';
 
 
 // const GameGrid = (props: Props) => {
@@ -12,11 +13,20 @@ function GameGrid() {
         <Fragment>
             <h1>Game Grid</h1>
             {error && <Text>{error}</Text>}
-            <ul>
+            <SimpleGrid
+                columns={{//change amount of columns based on screen size
+                    sm: 1, md: 2, lg: 3, xl: 4
+                }}
+                spacing={10}
+                padding={10}
+            >
                 {gameData.map((game) => (
-                    <li key={game.id}>{game.name}</li>
+                    <GameCard
+                        key={game.id}
+                        game={game}
+                    >{game.name}</GameCard>
                 ))}
-            </ul>
+            </SimpleGrid>
         </Fragment>
     )
 }

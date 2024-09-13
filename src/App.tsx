@@ -59,7 +59,7 @@ function App() {
         <Show above="lg">
           <GridItem area={'aside'} style={{ backgroundColor: 'lightcoral' }}>Aside</GridItem>
         </Show>
-        <GridItem area={'main'} style={{ backgroundColor: 'yellow' }}>
+        <GridItem area={'main'} >
           <GameGrid />
         </GridItem>
       </Grid>
