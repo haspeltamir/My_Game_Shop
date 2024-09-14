@@ -31,6 +31,7 @@ import { Grid, GridItem, Show } from "@chakra-ui/react"
 import { Fragment } from 'react'
 import NavBar from "./components/2_NavBar/NavBar"
 import GameGrid from "./components/4_GameGrid/GameGrid"
+import GenresList from "./components/9_GanresList/GanresList"
 function App() {
   return (
     <Fragment>
@@ -57,7 +58,10 @@ function App() {
         </GridItem>
         {/* show will only render on correct size */}
         <Show above="lg">
-          <GridItem area={'aside'} style={{ backgroundColor: 'lightcoral' }}>Aside</GridItem>
+          {/* <GridItem area={'aside'} style={{ backgroundColor: 'lightcoral' }}>Aside</GridItem> */}
+          <GridItem area={'aside'}>
+            <GenresList />
+          </GridItem>
         </Show>
         <GridItem area={'main'} >
           <GameGrid />
