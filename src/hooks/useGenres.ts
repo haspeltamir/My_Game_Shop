@@ -1,12 +1,4 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
-
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
+import useData from "./useData_Generic";
 
 export interface Genres {
   //each game object inside the games Array
@@ -14,50 +6,7 @@ export interface Genres {
   name: string;
 }
 
-export interface FacetGenresResponse {
-  //the games Array response from the API
-  count: number;
-  // next: string;
-  // previous: string;
-  results: Genres[]; //Array of Genres
-}
-
-const useGenres = () => {
-  const [genresData, setGenresData] = useState<Genres[]>([]);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    setIsLoading(true);
-    apiClient
-      .get<FacetGenresResponse>("/genres", {
-        signal: controller.signal,
-      })
-      // <FacetGenresResponse> is the Shape of the response Object
-      .then((result) => {
-        setGenresData(result.data.results);
-        // setIsLoading(false);
-      })
-      .catch((error) => {
-        if (error instanceof CanceledError) {
-          return;
-        }
-        setError(error.message);
-        // setIsLoading(false);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-    // cleanup function
-    return () => {
-      controller.abort();
-    };
-  }, []);
-  return { genresData, error, isLoading };
-};
-
+const useGenres = () => useData<Genres>("/genres");
 export default useGenres;
 
 // const useGanres = () => {
