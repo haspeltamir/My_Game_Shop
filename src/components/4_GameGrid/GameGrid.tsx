@@ -41,7 +41,6 @@ export default GameGrid;
 
 
 
-
 /* For later maybe
 
 useEffect(() => {

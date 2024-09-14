@@ -1,7 +1,8 @@
 import { Fragment, ReactNode } from 'react';
 import { Game } from '../../hooks/useGames';
-import { Card, CardBody, Heading, Image } from '@chakra-ui/react';
+import { Card, CardBody, Heading, HStack, Image } from '@chakra-ui/react';
 import Platform_Icon_List from '../6_Platform_Icon_List/Platform_Icon_List';
+import CriticScore from '../7_CriticScore.tsx/CriticScore';
 interface GameCardInterface {
     game?: Game;
     children?: ReactNode
@@ -27,12 +28,27 @@ function GameCard(
                     {/*
                 Platform_Icon_List will receive a prop called Platform which will be an array of objects
                 */}
-                    <Platform_Icon_List Platform={game?.parent_platforms
-                        .map((platform) => platform.platform)
-                    } />
-                    {/* {game?.parent_platforms.map((platform) => (
+                    {/* 
+                In order to do :"HStack" , Which will have the same effect as justify content space-between
+                we need to import HStack from chakra-ui 
+                example:
+                <HStack>
+                    <Box>1</Box>
+                    <Box>2</Box>
+                    <Box>3</Box>
+                </HStack> 
+                */}
+                    <HStack justifyContent="space-between">
+                        <Platform_Icon_List Platform={game?.parent_platforms
+                            .map((platform) => platform.platform)
+                        } />
+                        {/* {game?.parent_platforms.map((platform) => (
                     <span key={platform.platform.id}>{platform.platform.name}</span>
                     ))} */}
+
+                        {game?.metacritic && <CriticScore criticScore={game?.metacritic} />}
+                    </HStack>
+
                 </CardBody>
 
             </Card>
@@ -42,3 +58,25 @@ function GameCard(
 }
 
 export default GameCard;
+
+
+
+
+/*
+another way to write the same code for the CriticScore component
+{
+                        // 1
+                        // <CriticScore item="Critic Score" >
+                        //     {game?.metacritic}
+                        // </CriticScore>
+                        
+                        // 2
+                        game?.metacritic && (
+                            <Fragment>
+                                <Heading fontSize="xl">
+                                    Metacritic Score: {game?.metacritic}
+                                </Heading>
+                            </Fragment>
+                        )
+                    }
+*/
