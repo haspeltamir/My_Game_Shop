@@ -21,7 +21,7 @@ function GameCard(
             <Card borderWidth="1px" borderRadius={10} overflow="hidden">
                 <Image
                     // src={game?.background_image}
-                    src={game?.background_image ? getCroppedImage(game.background_image) : 'default_image_url'}
+                    src={game?.background_image ? getCroppedImage(game.background_image) : game?.background_image}
                 // alt={game?.name}
                 />
 
