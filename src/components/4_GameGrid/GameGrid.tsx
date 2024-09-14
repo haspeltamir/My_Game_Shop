@@ -2,13 +2,17 @@ import { Fragment } from 'react';
 import { SimpleGrid, Text } from '@chakra-ui/react';
 import useGames from '../../hooks/useGames';
 import GameCard from '../5_Game_Card/GameCard';
-
+import GameCardSkeletonWhenLoading from '../8_gameCardSkeleton_whenLoading/gameCardSkeleton_whenLoading';
 
 // const GameGrid = (props: Props) => {
 function GameGrid() {
 
     //here we are using the custom hook useGames to get the gameData and error(the entry data to the app comes from here)
-    const { gameData, error } = useGames();
+    const { gameData, error, isLoading } = useGames();
+
+    // const loadingSkeletons= Array.from({length: 10}, (_, index) => <GameCard key={index} isLoading={true}></GameCard>)
+    // const loadingSkeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => <GameCard key={index} isLoading={true}></GameCard>)
+    const loadingSkeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     return (
         <Fragment>
@@ -17,9 +21,13 @@ function GameGrid() {
                 columns={{//change amount of columns based on screen size
                     sm: 1, md: 2, lg: 3, xl: 4
                 }}
-                spacing={10}
                 padding={10}
+                spacing={10}
             >
+                {isLoading && loadingSkeletons.map(
+                    (index) => <GameCardSkeletonWhenLoading key={index} />)}
+
+
                 {gameData.map((game) => (
                     <GameCard
                         key={game.id}

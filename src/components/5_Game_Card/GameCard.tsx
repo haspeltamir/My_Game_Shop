@@ -2,7 +2,7 @@ import { Fragment, ReactNode } from 'react';
 import { Game } from '../../hooks/useGames';
 import { Card, CardBody, Heading, HStack, Image } from '@chakra-ui/react';
 import Platform_Icon_List from '../6_Platform_Icon_List/Platform_Icon_List';
-import CriticScore from '../7_CriticScore.tsx/CriticScore';
+import CriticScore from '../7_CriticScore/CriticScore';
 // import { getCroppedImage } from '../../services/image-url';
 import getCroppedImage from '../../services/image-url';
 interface GameCardInterface {
@@ -18,7 +18,9 @@ function GameCard(
     }: GameCardInterface) {
     return (
         <Fragment>
-            <Card borderWidth="1px" borderRadius={10} overflow="hidden">
+            <Card
+                width="300px"
+                borderWidth="1px" borderRadius={10} overflow="hidden">
                 <Image
                     // src={game?.background_image}
                     src={game?.background_image ? getCroppedImage(game.background_image) : game?.background_image}

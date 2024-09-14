@@ -42,11 +42,12 @@ const useGames = () => {
 
   const [gameData, setGameData] = useState<Game[]>([]);
   const [error, setError] = useState("");
-  // const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
 
+    setIsLoading(true);
     apiClient
       .get<FacetGamesResponse>("/games", {
         signal: controller.signal,
@@ -54,21 +55,24 @@ const useGames = () => {
       // <FacetGamesResponse> is the Shape of the response Object
       .then((result) => {
         setGameData(result.data.results);
-        // setLoading(false);
+        // setIsLoading(false);
       })
       .catch((error) => {
         if (error instanceof CanceledError) {
           return;
         }
         setError(error.message);
-        // setLoading(false);
+        // setIsLoading(false);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
     // cleanup function
     return () => {
       controller.abort();
     };
   }, []);
-  return { gameData, error };
+  return { gameData, error, isLoading };
 };
 
 export default useGames;
