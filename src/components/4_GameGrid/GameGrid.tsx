@@ -7,11 +7,11 @@ import GameCard from '../5_Game_Card/GameCard';
 // const GameGrid = (props: Props) => {
 function GameGrid() {
 
+    //here we are using the custom hook useGames to get the gameData and error(the entry data to the app comes from here)
     const { gameData, error } = useGames();
 
     return (
         <Fragment>
-            <h1>Game Grid</h1>
             {error && <Text>{error}</Text>}
             <SimpleGrid
                 columns={{//change amount of columns based on screen size
@@ -24,7 +24,7 @@ function GameGrid() {
                     <GameCard
                         key={game.id}
                         game={game}
-                    >{game.name}</GameCard>
+                    ></GameCard>
                 ))}
             </SimpleGrid>
         </Fragment>

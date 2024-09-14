@@ -2,11 +2,27 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 export interface Game {
   //each game object inside the games Array
   id: number;
   name: string;
   background_image: string;
+  // direct!
+  // parent_platforms: { platform: { name: string } }[];
+
+  //not direct!
+  /* the data is built like wher it is
+  an array of objects where each object
+  has a property called platform which
+  is an object with a property called name*/
+  parent_platforms: { platform: Platform }[];
+
   // released: string;
   // rating: number;
 }
@@ -34,7 +50,6 @@ const useGames = () => {
       .get<FacetGamesResponse>("/games", {
         signal: controller.signal,
       })
-      // .get<FacetGamesResponse>("/games.json")
       // <FacetGamesResponse> is the Shape of the response Object
       .then((result) => {
         setGameData(result.data.results);

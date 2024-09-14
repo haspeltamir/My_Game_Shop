@@ -20,7 +20,8 @@ function NavBar(
 
             {/* We use horizontal stack Because we want to have a switch,
             And next to it, a label.  */}
-            <HStack justifyContent={"space-between"} p={10} bg="gray.200"
+            {/* <HStack justifyContent={"space-between"} p={10} bg="gray.200" */}
+            <HStack justifyContent={"space-between"} p={10}
             >
 
                 <Image src={logo} alt="logo" boxSize="60px" />

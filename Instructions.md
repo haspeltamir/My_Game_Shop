@@ -19,6 +19,10 @@
         - Axios
             npm i axios
 
+        For Icons:
+        - React Icons
+            npm i react-icons
+
 
     ## npm Command
-    - npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion react-router-dom axios
+    - npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion react-router-dom axios react-icons
