@@ -4,6 +4,7 @@ export interface Genres {
   //each game object inside the games Array
   id: number;
   name: string;
+  image_background: string;
 }
 
 const useGenres = () => useData<Genres>("/genres");

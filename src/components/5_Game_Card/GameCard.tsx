@@ -19,7 +19,8 @@ function GameCard(
     return (
         <Fragment>
             <Card
-                width="300px"
+                // width="300px"
+                width="100%"
                 borderWidth="1px" borderRadius={10} overflow="hidden">
                 <Image
                     // src={game?.background_image}

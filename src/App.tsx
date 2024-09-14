@@ -36,19 +36,26 @@ function App() {
   return (
     <Fragment>
       <Grid
+        // base scenario: only one column
+        //large scenario: 2 columns
         templateAreas={
           {
             base: `
         "nav"
         "main"
         ` ,
-            lg:// largeer than 1024px
-              `
+            // largeer than 1024px
+            lg: `
             "nav nav"
             "aside main"
             `}
         }
-      // templateColumns="200px 1fr"
+
+        // templateColumns="200px 1fr"
+        templateColumns={{
+          base: "1fr", //if the screen is small, the column will take up the full width of the screen.
+          lg: "200px 1fr"//if the screen is large, the first column will be 200 pixels wide, and the second column will take up the remaining space.
+        }}
       // templateRows="100px 1fr 100px"
       // gap={4}
       >
@@ -59,7 +66,7 @@ function App() {
         {/* show will only render on correct size */}
         <Show above="lg">
           {/* <GridItem area={'aside'} style={{ backgroundColor: 'lightcoral' }}>Aside</GridItem> */}
-          <GridItem area={'aside'}>
+          <GridItem area={'aside'} paddingX={4}>
             <GenresList />
           </GridItem>
         </Show>

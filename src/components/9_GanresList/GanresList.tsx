@@ -3,17 +3,29 @@ import { Fragment, } from 'react';
 // import { Genres } from '../../hooks/useGenres';
 // import useData from '../../hooks/useData_Generic';
 import useGenres from '../../hooks/useGenres';//hide the implementation details of the custom hook
+import { HStack, Image, List, ListItem, Text } from '@chakra-ui/react';
 function GenresList() {
     // const { genresData } = useGenres_Non_Generic();
     // const { data: genresData } = useData<Genres>("/genres");//Generics
     const { data: genresData } = useGenres();
     return (
         <Fragment>
-            {genresData.map((genre) => (
-                <div key={genre.id}>
-                    <h2>{genre.name}</h2>
-                </div>
-            ))}
+            <List>
+                {genresData.map((genre) => (
+                    <ListItem key={genre.id} paddingY={2}>
+                        <HStack>
+                            <Image
+                                src={genre.image_background}
+                                alt={genre.name}
+                                boxSize="32px"
+                                // borderRadius="full"
+                                borderRadius={8}
+                            />
+                            <Text fontSize={"large"}>{genre.name}</Text>
+                        </HStack>
+                    </ListItem>
+                ))}
+            </List>
         </Fragment>
     )
 }
