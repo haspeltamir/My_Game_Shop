@@ -28,11 +28,13 @@ grid-template-columns:
 
 
 import { Grid, GridItem, Show } from "@chakra-ui/react"
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import NavBar from "./components/2_NavBar/NavBar"
 import GameGrid from "./components/4_GameGrid/GameGrid"
 import GenresList from "./components/9_GanresList/GanresList"
+import { Genres } from "./hooks/useGenres"
 function App() {
+  const [selectedGenres, setSelectedGenres] = useState<Genres | null>(null);
   return (
     <Fragment>
       <Grid
@@ -67,11 +69,12 @@ function App() {
         <Show above="lg">
           {/* <GridItem area={'aside'} style={{ backgroundColor: 'lightcoral' }}>Aside</GridItem> */}
           <GridItem area={'aside'} paddingX={4}>
-            <GenresList />
+            <GenresList onClickSendToParent={(genres) =>
+              setSelectedGenres(genres)} />
           </GridItem>
         </Show>
         <GridItem area={'main'} >
-          <GameGrid />
+          <GameGrid selectedGeneraObject={selectedGenres} />
         </GridItem>
       </Grid>
 

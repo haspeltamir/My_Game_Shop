@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
+import { AxiosRequestConfig, CanceledError } from "axios";
 
 export interface FacetDataResponse<T> {
   //the games Array response from the API
@@ -9,43 +9,51 @@ export interface FacetDataResponse<T> {
   // previous: string;
   results: T[]; //Array of Genres
 }
-
-const useData = <T>(endpoint: string) => {
+// RequestConfig allows us to pass in a configuration object to the Axios request,like headers,
+//query params, etc.
+const useData = <T>(
+  endpoint: string,
+  requestConfig?: AxiosRequestConfig,
+  dependencies?: never[]
+) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const controller = new AbortController();
+  useEffect(
+    () => {
+      const controller = new AbortController();
 
-    setIsLoading(true);
-    apiClient
-      //need to specify it is a Genres Array. this is the same "T" from "useData = <T>(endpoint: string)"
-      .get<FacetDataResponse<T>>(endpoint, {
-        signal: controller.signal,
-      })
-      // <FacetDataResponse> is the Shape of the response Object
-      .then((result) => {
-        setData(result.data.results);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        if (error instanceof CanceledError) {
-          return;
-        }
-        setError(error.message);
-        setIsLoading(false);
-      });
-    // .finally(() => {
-    //   setIsLoading(false);
-    // });
-    // cleanup function
-    return () => {
-      controller.abort();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  return { data, error, isLoading };
+      setIsLoading(true);
+      apiClient
+        //need to specify it is a Genres Array. this is the same "T" from "useData = <T>(endpoint: string)"
+        .get<FacetDataResponse<T>>(endpoint, {
+          signal: controller.signal,
+          ...requestConfig,
+        })
+        // <FacetDataResponse> is the Shape of the response Object
+        .then((result) => {
+          setData(result.data.results);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          if (error instanceof CanceledError) {
+            return;
+          }
+          setError(error.message);
+          setIsLoading(false);
+        });
+      // .finally(() => {
+      //   setIsLoading(false);
+      // });
+      // cleanup function
+      return () => {
+        controller.abort();
+      };
+    },
+    dependencies ? [...dependencies] : []
+  );
+  return { data, error, isLoading, setData };
 };
 
 export default useData;

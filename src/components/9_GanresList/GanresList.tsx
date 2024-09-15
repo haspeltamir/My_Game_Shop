@@ -2,9 +2,15 @@ import { Fragment, } from 'react';
 // import useGenres_Non_Generic from '../../hooks/before_Generics/useGenres_Non_Generic';
 // import { Genres } from '../../hooks/useGenres';
 // import useData from '../../hooks/useData_Generic';
-import useGenres from '../../hooks/useGenres';//hide the implementation details of the custom hook
-import { HStack, Image, List, ListItem, Spinner, Text } from '@chakra-ui/react';
-function GenresList() {
+import useGenres, { Genres } from '../../hooks/useGenres';//hide the implementation details of the custom hook
+import { Button, HStack, Image, List, ListItem, Spinner, Text } from '@chakra-ui/react';
+
+interface GridItemProps {
+    // onClickSendToParent: (id: number, name: string) => void;
+    onClickSendToParent: (genre: Genres) => void;
+}
+
+function GenresList({ onClickSendToParent }: GridItemProps) {
     // const { genresData } = useGenres_Non_Generic();
     // const { data: genresData } = useData<Genres>("/genres");//Generics
     const { data: genresData, isLoading, error } = useGenres();
@@ -29,7 +35,15 @@ function GenresList() {
                                 // borderRadius="full"
                                 borderRadius={8}
                             />
-                            <Text fontSize={"large"}>{genre.name}</Text>
+                            <Button
+                                fontSize={"large"}
+                                variant="link"
+                                onClick={() => {
+                                    // console.log(genre.id, genre.name)
+                                    // onClickSendToParent(genre.id, genre.name)
+                                    onClickSendToParent(genre)
+                                }}
+                            >{genre.name}</Button>
                         </HStack>
                     </ListItem>
                 ))}

@@ -1,4 +1,5 @@
 import useData from "./useData_Generic";
+import { Genres } from "./useGenres";
 
 export interface Platform {
   id: number;
@@ -26,7 +27,24 @@ export interface Game {
   // rating: number;
 }
 
-const useGames = () => useData<Game>("/games");
+/*
+we are passing the selectedGenres.id as a query parameter (its said documentation under
+"get list of games" that we can pass a query parameter called genres meaning we can
+filter the games by genre)
+
+It says we need to pass Values separated by comma(Id or Slugs). 
+*/
+// const useGames = () => useData<Game>("/games");
+const useGames = (selectedGenres: Genres | null) =>
+  useData<Game>(
+    "/games",
+    {
+      params: {
+        genres: selectedGenres?.id,
+      },
+    },
+    [selectedGenres?.id]
+  );
 export default useGames;
 
 // const useGames = () => {

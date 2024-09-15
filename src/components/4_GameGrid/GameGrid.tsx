@@ -4,18 +4,23 @@ import { SimpleGrid, Text } from '@chakra-ui/react';
 import useGames from '../../hooks/useGames';
 import GameCard from '../5_Game_Card/GameCard';
 import GameCardSkeletonWhenLoading from '../8_gameCardSkeleton_whenLoading/gameCardSkeleton_whenLoading';
+import { Genres } from '../../hooks/useGenres';
 
+interface GameGridProps {
+    selectedGeneraObject: Genres | null;
+}
 // const GameGrid = (props: Props) => {
-function GameGrid() {
+function GameGrid({ selectedGeneraObject }: GameGridProps) {
 
     //here we are using the custom hook useGames to get the gameData and error(the entry data to the app comes from here)
-    const { data: gameData, error, isLoading } = useGames();
     // const { gameData, error, isLoading } = useGames_Non_Generic();
-
+    // const { data: gameData, error, isLoading } = useGames();
+    const { data: gameData, error, isLoading } = useGames(selectedGeneraObject);
     // const loadingSkeletons= Array.from({length: 10}, (_, index) => <GameCard key={index} isLoading={true}></GameCard>)
     // const loadingSkeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => <GameCard key={index} isLoading={true}></GameCard>)
     const loadingSkeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+    console.log("GameGrid.tsx: selectedGeneraObject", selectedGeneraObject);
     return (
         <Fragment>
             {error && <Text>{error}</Text>}
