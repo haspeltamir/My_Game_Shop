@@ -69,8 +69,11 @@ function App() {
         <Show above="lg">
           {/* <GridItem area={'aside'} style={{ backgroundColor: 'lightcoral' }}>Aside</GridItem> */}
           <GridItem area={'aside'} paddingX={4}>
-            <GenresList onClickSendToParent={(genres) =>
-              setSelectedGenres(genres)} />
+            <GenresList
+              onClickSendToParent={(genres) =>
+                setSelectedGenres(genres)}
+              selectedGenera={selectedGenres}
+            />
           </GridItem>
         </Show>
         <GridItem area={'main'} >

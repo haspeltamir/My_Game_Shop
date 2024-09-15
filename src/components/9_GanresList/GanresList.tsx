@@ -8,9 +8,10 @@ import { Button, HStack, Image, List, ListItem, Spinner, Text } from '@chakra-ui
 interface GridItemProps {
     // onClickSendToParent: (id: number, name: string) => void;
     onClickSendToParent: (genre: Genres) => void;
+    selectedGenera: Genres | null;
 }
 
-function GenresList({ onClickSendToParent }: GridItemProps) {
+function GenresList({ onClickSendToParent, selectedGenera }: GridItemProps) {
     // const { genresData } = useGenres_Non_Generic();
     // const { data: genresData } = useData<Genres>("/genres");//Generics
     const { data: genresData, isLoading, error } = useGenres();
@@ -37,6 +38,8 @@ function GenresList({ onClickSendToParent }: GridItemProps) {
                             />
                             <Button
                                 fontSize={"large"}
+                                // fontWeight={(genre.name === "Action") ? "bold" : "normal"}
+                                fontWeight={(genre.id === selectedGenera?.id) ? "bold" : "normal"}
                                 variant="link"
                                 onClick={() => {
                                     // console.log(genre.id, genre.name)

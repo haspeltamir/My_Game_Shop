@@ -14,7 +14,8 @@ export interface FacetDataResponse<T> {
 const useData = <T>(
   endpoint: string,
   requestConfig?: AxiosRequestConfig,
-  dependencies?: never[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  dependencies?: any[]
 ) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
@@ -51,6 +52,7 @@ const useData = <T>(
         controller.abort();
       };
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     dependencies ? [...dependencies] : []
   );
   return { data, error, isLoading, setData };
