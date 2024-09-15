@@ -55,23 +55,23 @@ const useGames_Non_Generic = () => {
       // <FacetGamesResponse> is the Shape of the response Object
       .then((result) => {
         setGameData(result.data.results);
-        // setIsLoading(false);
+        setIsLoading(false);
       })
       .catch((error) => {
         if (error instanceof CanceledError) {
           return;
         }
         setError(error.message);
-        // setIsLoading(false);
-      })
-      .finally(() => {
         setIsLoading(false);
       });
+    // .finally(() => {
+    //   setIsLoading(false);
+    // });
     // cleanup function
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [error]);
   return { gameData, error, isLoading };
 };
 

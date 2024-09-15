@@ -27,23 +27,24 @@ const useData = <T>(endpoint: string) => {
       // <FacetDataResponse> is the Shape of the response Object
       .then((result) => {
         setData(result.data.results);
-        // setIsLoading(false);
+        setIsLoading(false);
       })
       .catch((error) => {
         if (error instanceof CanceledError) {
           return;
         }
         setError(error.message);
-        // setIsLoading(false);
-      })
-      .finally(() => {
         setIsLoading(false);
       });
+    // .finally(() => {
+    //   setIsLoading(false);
+    // });
     // cleanup function
     return () => {
       controller.abort();
     };
-  }, [endpoint]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return { data, error, isLoading };
 };
 

@@ -5,6 +5,7 @@ import Platform_Icon_List from '../6_Platform_Icon_List/Platform_Icon_List';
 import CriticScore from '../7_CriticScore/CriticScore';
 // import { getCroppedImage } from '../../services/image-url';
 import getCroppedImage from '../../services/image-url';
+
 interface GameCardInterface {
     game?: Game;
     children?: ReactNode

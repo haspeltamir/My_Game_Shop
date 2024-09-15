@@ -3,13 +3,21 @@ import { Fragment, } from 'react';
 // import { Genres } from '../../hooks/useGenres';
 // import useData from '../../hooks/useData_Generic';
 import useGenres from '../../hooks/useGenres';//hide the implementation details of the custom hook
-import { HStack, Image, List, ListItem, Text } from '@chakra-ui/react';
+import { HStack, Image, List, ListItem, Spinner, Text } from '@chakra-ui/react';
 function GenresList() {
     // const { genresData } = useGenres_Non_Generic();
     // const { data: genresData } = useData<Genres>("/genres");//Generics
-    const { data: genresData } = useGenres();
+    const { data: genresData, isLoading, error } = useGenres();
+
+    if (error) {
+        return <Text>{error}</Text>
+    }
+    if (isLoading) {
+        return <Spinner />
+    }
     return (
         <Fragment>
+            {/* {isLoading && <Spinner />} */}
             <List>
                 {genresData.map((genre) => (
                     <ListItem key={genre.id} paddingY={2}>
