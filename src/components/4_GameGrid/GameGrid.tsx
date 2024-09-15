@@ -20,7 +20,7 @@ function GameGrid({ selectedGeneraObject }: GameGridProps) {
     // const loadingSkeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => <GameCard key={index} isLoading={true}></GameCard>)
     const loadingSkeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-    console.log("GameGrid.tsx: selectedGeneraObject", selectedGeneraObject);
+    // console.log("GameGrid.tsx: selectedGeneraObject", selectedGeneraObject);
     return (
         <Fragment>
             {error && <Text>{error}</Text>}
