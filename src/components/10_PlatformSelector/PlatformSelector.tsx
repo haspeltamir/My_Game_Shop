@@ -7,7 +7,11 @@ import usePlatforms from '../../hooks/usePlatforms';
 // const PlatformSelector = (props: Props) => {
 function PlatformSelector() {
 
-    const { data: platformData } = usePlatforms();
+    const { data: platformData, error } = usePlatforms();
+    if (error) {
+        // return <div>{error}</div>
+        return null
+    }
     return (
         <Fragment>
 
