@@ -35,15 +35,19 @@ filter the games by genre)
 It says we need to pass Values separated by comma(Id or Slugs). 
 */
 // const useGames = () => useData<Game>("/games");
-const useGames = (selectedGenres: Genres | null) =>
+const useGames = (
+  selectedGenres: Genres | null,
+  selectedPlatforms: Platform | null
+) =>
   useData<Game>(
     "/games",
     {
       params: {
         genres: selectedGenres?.id,
+        platforms: selectedPlatforms?.id,
       },
     },
-    [selectedGenres?.id]
+    [selectedGenres?.id, selectedPlatforms?.id]
   );
 export default useGames;
 
