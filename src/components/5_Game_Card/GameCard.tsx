@@ -32,9 +32,7 @@ function GameCard(
                 />
 
                 <CardBody>
-                    <Heading fontSize="2xl">
-                        {game?.name}
-                    </Heading>
+
                     {/*
                 Platform_Icon_List will receive a prop called Platform which will be an array of objects
                 */}
@@ -48,7 +46,10 @@ function GameCard(
                     <Box>3</Box>
                 </HStack> 
                 */}
-                    <HStack justifyContent="space-between">
+                    <HStack
+                        justifyContent="space-between"
+                        marginBottom={2}
+                    >
                         <Platform_Icon_List Platform={game?.parent_platforms
                             .map((platform) => platform.platform)
                         } />
@@ -58,7 +59,9 @@ function GameCard(
 
                         {game?.metacritic && <CriticScore criticScore={game?.metacritic} />}
                     </HStack>
-
+                    <Heading fontSize="2xl">
+                        {game?.name}
+                    </Heading>
                 </CardBody>
 
             </Card>
