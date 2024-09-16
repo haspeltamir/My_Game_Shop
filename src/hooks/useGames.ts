@@ -1,5 +1,6 @@
+import { GameQuery } from "../App";
 import useData from "./useData_Generic";
-import { Genres } from "./useGenres";
+// import { Genres } from "./useGenres";
 
 export interface Platform {
   id: number;
@@ -36,18 +37,24 @@ It says we need to pass Values separated by comma(Id or Slugs).
 */
 // const useGames = () => useData<Game>("/games");
 const useGames = (
-  selectedGenres: Genres | null,
-  selectedPlatforms: Platform | null
+  // selectedGenres: Genres | null,
+  // selectedPlatforms: Platform | null
+  gameQuery?: GameQuery
 ) =>
   useData<Game>(
     "/games",
     {
+      // params: {
+      //   genres: selectedGenres?.id,
+      //   platforms: selectedPlatforms?.id,
+      // },
       params: {
-        genres: selectedGenres?.id,
-        platforms: selectedPlatforms?.id,
+        genres: gameQuery?.genre?.id,
+        platforms: gameQuery?.platform?.id,
       },
     },
-    [selectedGenres?.id, selectedPlatforms?.id]
+    // [selectedGenres?.id, selectedPlatforms?.id]
+    [gameQuery]
   );
 export default useGames;
 

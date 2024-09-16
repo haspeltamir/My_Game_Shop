@@ -35,9 +35,27 @@ import GenresList from "./components/9_GanresList/GanresList"
 import { Genres } from "./hooks/useGenres"
 import PlatformSelector from "./components/10_PlatformSelector/PlatformSelector"
 import { Platform } from "./hooks/usePlatforms"
+
+/*Query Object Pattern
+we use this pattern to pass multiple parameters to a function
+instead of passing a bunch of parameters to a function,
+we can pass a single object that contains all the parameters
+*/
+
+export interface GameQuery {
+  genre: Genres | null;
+  platform: Platform | null;
+}
+
 function App() {
-  const [selectedGenres, setSelectedGenres] = useState<Genres | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
+  // const [selectedGenres, setSelectedGenres] = useState<Genres | null>(null);
+  // const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
+
+  /*
+  "as GameQuery" in typescript means that we are telling typescript that the object is of type GameQuery
+  we need to do that because we are initializing the object as an empty object which is not of type GameQuery
+  */
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
   return (
     <Fragment>
       <Grid
@@ -73,21 +91,31 @@ function App() {
           {/* <GridItem area={'aside'} style={{ backgroundColor: 'lightcoral' }}>Aside</GridItem> */}
           <GridItem area={'aside'} paddingX={4}>
             <GenresList
-              onClickSendToParent={(genres) =>
-                setSelectedGenres(genres)}
-              selectedGenera={selectedGenres}
+              onClickSendToParent={(genre) =>
+                // setSelectedGenres(genre)
+                setGameQuery({ ...gameQuery, genre })
+              }
+              // selectedGenera={selectedGenres}
+              selectedGenera={gameQuery.genre}
             />
           </GridItem>
         </Show>
         <GridItem area={'main'} >
           <PlatformSelector
-            selectedPlatform={selectedPlatform}
+            // selectedPlatform={selectedPlatform}
+            selectedPlatform={gameQuery.platform}
             onClickSendToParent={(platform) =>
-              setSelectedPlatform(platform)}
+              // setSelectedPlatform(platform)
+              setGameQuery({ ...gameQuery, platform })
+            }
           />
           <GameGrid
-            selectedGeneraObject={selectedGenres}
-            selectedPlatformObject={selectedPlatform}
+            // selectedGeneraObject={selectedGenres}
+            /*
+            selectedGeneraObject={gameQuery.genres}
+            selectedPlatformObject={gameQuery.platform}
+            */
+            gameQuery={gameQuery}
           />
         </GridItem>
       </Grid>
