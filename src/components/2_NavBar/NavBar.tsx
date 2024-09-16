@@ -2,6 +2,7 @@ import { HStack, Image, Text } from '@chakra-ui/react';
 import { Fragment, ReactNode } from 'react';
 import logo from '../../assets/Logo/logo.webp';
 import ChangeColorMode from '../3_ColorMode_Switch/ChangeColorMode';
+import SearchInput from '../12_SearchInput/SearchInput';
 interface Props {
     item?: string;
     children?: ReactNode
@@ -28,6 +29,7 @@ function NavBar(
 
                 {/* <Image src="https://via.placeholder.com/150" alt="placeholder" /> */}
                 <Text fontSize="2xl">My Game Shop</Text>
+                <SearchInput />
 
                 {/* 
                 add the ChangeColorMode component to the NavBar component on the right side of the logo.
