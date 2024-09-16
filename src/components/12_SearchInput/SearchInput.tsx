@@ -1,23 +1,37 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
-import { Fragment } from 'react';
+import { Fragment, useRef } from 'react';
 import { BsSearch } from 'react-icons/bs';
 
+interface SearchInputProps {
+    onSubmitPassToParent: (searchText: string) => void;
+}
 
-// const SearchInput = (props: Props) => {
-function SearchInput(
-) {
+function SearchInput({ onSubmitPassToParent }: SearchInputProps) {
+    const ref = useRef<HTMLInputElement>(null);
     return (
         <Fragment>
-            <InputGroup width="50%">
-                <InputLeftElement pointerEvents="none" children={<BsSearch />} />
-                <Input
-                    borderRadius={20}
-                    border="1px solid"
-                    variant="filled"
-                    placeholder="Search..."
-
-                />
-            </InputGroup>
+            <form
+                // action=""
+                onSubmit={(e) => {
+                    e.preventDefault();//prevent the page from refreshing(Prevent the form from being sent to the server. )
+                    if (ref.current) {
+                        // console.log(ref.current.value);
+                        onSubmitPassToParent(ref.current.value);
+                    }
+                }
+                }
+            >
+                <InputGroup >
+                    <InputLeftElement pointerEvents="none" children={<BsSearch />} />
+                    <Input
+                        borderRadius={20}
+                        border="1px solid"
+                        variant="filled"
+                        placeholder="Search..."
+                        ref={ref}
+                    />
+                </InputGroup>
+            </form>
         </Fragment>
     )
 }

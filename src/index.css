@@ -1,3 +1,15 @@
+form {
+  width: 100%;
+}
+
+/* form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-width: 320px;
+  margin: 0 auto;
+} */
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
