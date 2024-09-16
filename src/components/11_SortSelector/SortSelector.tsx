@@ -7,11 +7,12 @@ import { BsChevronDown } from 'react-icons/bs';
 
 
 interface SortingOptionProps {
-    onSelectedSortingChangeNotifyParent?: (sortOrder: string) => void;
+    selectedSorting: string | null;
+    onSelectedSortingChangeNotifyParent: (sortOrder: string) => void;
 }
 
 function SortSelector(
-    { onSelectedSortingChangeNotifyParent }: SortingOptionProps
+    { onSelectedSortingChangeNotifyParent, selectedSorting }: SortingOptionProps
 ) {
     const sortingOptions = [
         { name: "Relevance", value: "relevance" },//"name" is the "label" we see and "value" is the "value"
@@ -37,7 +38,8 @@ function SortSelector(
                 // onClick={() => console.log("clicked")}
                 >
                     {/* {selectedSorting?.name || "Order By"} */}
-                    Order By
+                    {/* Order By */}
+                    Order By: {sortingOptions.find(sortingOption => sortingOption.value === selectedSorting)?.name || "Relevance"}
                 </MenuButton>
                 <MenuList>
                     {sortingOptions.map(sortingOption => (

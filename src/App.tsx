@@ -114,6 +114,7 @@ function App() {
             />
 
             <SortSelector
+              selectedSorting={gameQuery.sortOrder}
               onSelectedSortingChangeNotifyParent={(sortOrder) =>
                 setGameQuery({ ...gameQuery, sortOrder })
               }
