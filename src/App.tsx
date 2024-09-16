@@ -46,6 +46,7 @@ we can pass a single object that contains all the parameters
 export interface GameQuery {
   genre: Genres | null;
   platform: Platform | null;
+  sortOrder: string | null;
 }
 
 function App() {
@@ -112,7 +113,11 @@ function App() {
               }
             />
 
-            <SortSelector />
+            <SortSelector
+              onSelectedSortingChangeNotifyParent={(sortOrder) =>
+                setGameQuery({ ...gameQuery, sortOrder })
+              }
+            />
           </HStack>
           <GameGrid
             // selectedGeneraObject={selectedGenres}

@@ -7,6 +7,9 @@ We will use this when, for example We don't want to load the full image(Like if 
 */
 
 const getCroppedImage = (imageURL: string) => {
+  if (!imageURL) {
+    return "";
+  }
   const targetWordInURL = "media/";
   const index = imageURL.indexOf(targetWordInURL) + targetWordInURL.length;
   return imageURL.slice(0, index) + "crop/600/400/" + imageURL.slice(index);

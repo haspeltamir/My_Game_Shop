@@ -51,6 +51,7 @@ const useGames = (
       params: {
         genres: gameQuery?.genre?.id,
         platforms: gameQuery?.platform?.id,
+        ordering: gameQuery?.sortOrder,
       },
     },
     // [selectedGenres?.id, selectedPlatforms?.id]
