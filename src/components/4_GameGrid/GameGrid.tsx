@@ -35,7 +35,9 @@ function GameGrid({ gameQuery }: GameGridProps) {
                 columns={{//change amount of columns based on screen size
                     sm: 1, md: 2, lg: 3, xl: 4
                 }}
-                padding={10}
+                paddingY={10}
+                paddingX={2}
+
                 spacing={10}
             >
                 {isLoading && loadingSkeletons.map(

@@ -27,7 +27,7 @@ grid-template-columns:
 */
 
 
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react"
+import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react"
 import { Fragment, useState } from 'react'
 import NavBar from "./components/2_NavBar/NavBar"
 import GameGrid from "./components/4_GameGrid/GameGrid"
@@ -36,6 +36,7 @@ import { Genres } from "./hooks/useGenres"
 import PlatformSelector from "./components/10_PlatformSelector/PlatformSelector"
 import { Platform } from "./hooks/usePlatforms"
 import SortSelector from "./components/11_SortSelector/SortSelector"
+import GamesHeading from "./components/13_GamesHeading/GamesHeading"
 
 /*Query Object Pattern
 we use this pattern to pass multiple parameters to a function
@@ -88,8 +89,10 @@ function App() {
 
         <GridItem area={'nav'}>
           <NavBar
-            onSearchPassToParent={(searchText) =>
+            onSearchPassToParent={(searchText) => {
+              console.log("searchText(Navbar.tsx)", searchText)
               setGameQuery({ ...gameQuery, searchText })
+            }
             }
           />
         </GridItem>
@@ -108,23 +111,29 @@ function App() {
           </GridItem>
         </Show>
         <GridItem area={'main'} >
-          <HStack spacing={4}>
-            <PlatformSelector
-              // selectedPlatform={selectedPlatform}
-              selectedPlatform={gameQuery.platform}
-              onClickSendToParent={(platform) =>
-                // setSelectedPlatform(platform)
-                setGameQuery({ ...gameQuery, platform })
-              }
-            />
-
-            <SortSelector
-              selectedSorting={gameQuery.sortOrder}
-              onSelectedSortingChangeNotifyParent={(sortOrder) =>
-                setGameQuery({ ...gameQuery, sortOrder })
-              }
-            />
-          </HStack>
+          <Box
+            paddingX={2}
+          // paddingY={4}
+          >
+            <GamesHeading
+              currentFilterGameQuery={gameQuery} />
+            <HStack spacing={4}>
+              <PlatformSelector
+                // selectedPlatform={selectedPlatform}
+                selectedPlatform={gameQuery.platform}
+                onClickSendToParent={(platform) =>
+                  // setSelectedPlatform(platform)
+                  setGameQuery({ ...gameQuery, platform })
+                }
+              />
+              <SortSelector
+                selectedSorting={gameQuery.sortOrder}
+                onSelectedSortingChangeNotifyParent={(sortOrder) =>
+                  setGameQuery({ ...gameQuery, sortOrder })
+                }
+              />
+            </HStack>
+          </Box>
           <GameGrid
             // selectedGeneraObject={selectedGenres}
             /*
