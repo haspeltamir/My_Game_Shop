@@ -3,7 +3,7 @@ import { Fragment, } from 'react';
 // import { Genres } from '../../hooks/useGenres';
 // import useData from '../../hooks/useData_Generic';
 import useGenres, { Genres } from '../../hooks/useGenres';//hide the implementation details of the custom hook
-import { Button, HStack, Image, List, ListItem, Spinner, Text } from '@chakra-ui/react';
+import { Button, Heading, HStack, Image, List, ListItem, Spinner, Text } from '@chakra-ui/react';
 
 interface GridItemProps {
     // onClickSendToParent: (id: number, name: string) => void;
@@ -25,6 +25,7 @@ function GenresList({ onClickSendToParent, selectedGenera }: GridItemProps) {
     return (
         <Fragment>
             {/* {isLoading && <Spinner />} */}
+            <Heading as="h2" size="lg" marginBottom={2}>Genres</Heading>
             <List>
                 {genresData.map((genre) => (
                     <ListItem key={genre.id} paddingY={2}>
@@ -35,6 +36,7 @@ function GenresList({ onClickSendToParent, selectedGenera }: GridItemProps) {
                                 boxSize="32px"
                                 // borderRadius="full"
                                 borderRadius={8}
+                                objectFit="cover"//this will make the image fill the container box without stretching
                             />
                             <Button
                                 fontSize={"large"}
@@ -46,6 +48,9 @@ function GenresList({ onClickSendToParent, selectedGenera }: GridItemProps) {
                                     // onClickSendToParent(genre.id, genre.name)
                                     onClickSendToParent(genre)
                                 }}
+                                // whiteSpace="nowrap" //this is the default value
+                                whiteSpace="normal"
+                                textAlign="left"
                             >{genre.name}</Button>
                         </HStack>
                     </ListItem>
