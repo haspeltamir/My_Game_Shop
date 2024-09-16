@@ -27,7 +27,7 @@ grid-template-columns:
 */
 
 
-import { Grid, GridItem, Show } from "@chakra-ui/react"
+import { Grid, GridItem, HStack, Show } from "@chakra-ui/react"
 import { Fragment, useState } from 'react'
 import NavBar from "./components/2_NavBar/NavBar"
 import GameGrid from "./components/4_GameGrid/GameGrid"
@@ -35,6 +35,7 @@ import GenresList from "./components/9_GanresList/GanresList"
 import { Genres } from "./hooks/useGenres"
 import PlatformSelector from "./components/10_PlatformSelector/PlatformSelector"
 import { Platform } from "./hooks/usePlatforms"
+import SortSelector from "./components/11_SortSelector/SortSelector"
 
 /*Query Object Pattern
 we use this pattern to pass multiple parameters to a function
@@ -101,14 +102,18 @@ function App() {
           </GridItem>
         </Show>
         <GridItem area={'main'} >
-          <PlatformSelector
-            // selectedPlatform={selectedPlatform}
-            selectedPlatform={gameQuery.platform}
-            onClickSendToParent={(platform) =>
-              // setSelectedPlatform(platform)
-              setGameQuery({ ...gameQuery, platform })
-            }
-          />
+          <HStack spacing={4}>
+            <PlatformSelector
+              // selectedPlatform={selectedPlatform}
+              selectedPlatform={gameQuery.platform}
+              onClickSendToParent={(platform) =>
+                // setSelectedPlatform(platform)
+                setGameQuery({ ...gameQuery, platform })
+              }
+            />
+
+            <SortSelector />
+          </HStack>
           <GameGrid
             // selectedGeneraObject={selectedGenres}
             /*
