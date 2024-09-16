@@ -6,9 +6,10 @@ then this will be used in the GameCard component to display the image of the gam
 We will use this when, for example We don't want to load the full image(Like if you have slow Internet connection )
 */
 
+import noImage from "../assets/Image_Placeholder/no-image-placeholder.webp";
 const getCroppedImage = (imageURL: string) => {
   if (!imageURL) {
-    return "";
+    return noImage;
   }
   const targetWordInURL = "media/";
   const index = imageURL.indexOf(targetWordInURL) + targetWordInURL.length;

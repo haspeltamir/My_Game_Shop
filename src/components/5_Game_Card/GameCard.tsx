@@ -7,7 +7,7 @@ import CriticScore from '../7_CriticScore/CriticScore';
 import getCroppedImage from '../../services/image-url';
 
 interface GameCardInterface {
-    game?: Game;
+    game: Game;
     children?: ReactNode
 }
 
@@ -15,7 +15,7 @@ interface GameCardInterface {
 function GameCard(
     {
         // id,
-        game,
+        game: game,
     }: GameCardInterface) {
     return (
         <Fragment>
@@ -25,7 +25,9 @@ function GameCard(
                 borderWidth="1px" borderRadius={10} overflow="hidden">
                 <Image
                     // src={game?.background_image}
-                    src={game?.background_image ? getCroppedImage(game.background_image) : game?.background_image}
+                    // src={(game?.background_image == null || game?.background_image) ? getCroppedImage(game.background_image) : game?.background_image}
+                    // src={game.background_image ? getCroppedImage(game.background_image) : game.background_image}
+                    src={getCroppedImage(game.background_image)}
                 // alt={game?.name}
                 />
 
