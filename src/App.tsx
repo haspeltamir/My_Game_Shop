@@ -90,6 +90,7 @@ function App() {
           base: "1fr", //if the screen is small, the column will take up the full width of the screen.
           lg: "200px 1fr"//if the screen is large, the first column will be 200 pixels wide, and the second column will take up the remaining space.
         }}
+
       // templateRows="100px 1fr 100px"
       // gap={4}
       >
