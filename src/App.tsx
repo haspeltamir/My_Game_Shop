@@ -52,6 +52,7 @@ export interface GameQuery {
 }
 {
   // console.log("env", import.meta.env.VITE_SERVER_URL)
+
 }
 {
   // console.log("env", import.meta.env.VITE_Private_Key_For_My_Game_Shop)
