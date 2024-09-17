@@ -1,22 +1,19 @@
-import { Fragment, ReactNode } from 'react';
+import { Fragment } from 'react';
 import { Game } from '../../hooks/useGames';
 import { Card, CardBody, Heading, HStack, Image } from '@chakra-ui/react';
 import Platform_Icon_List from '../6_Platform_Icon_List/Platform_Icon_List';
 import CriticScore from '../7_CriticScore/CriticScore';
 // import { getCroppedImage } from '../../services/image-url';
 import getCroppedImage from '../../services/image-url';
+import Emoji from '../14_Emoji/Emoji';
 
 interface GameCardInterface {
     game: Game;
-    children?: ReactNode
 }
 
 // const GameCard = (props: GameCard) => {
 function GameCard(
-    {
-        // id,
-        game: game,
-    }: GameCardInterface) {
+    { game: game, }: GameCardInterface) {
     return (
         <Fragment>
             <Card
@@ -50,7 +47,7 @@ function GameCard(
                         justifyContent="space-between"
                         marginBottom={2}
                     >
-                        <Platform_Icon_List Platform={game?.parent_platforms
+                        <Platform_Icon_List PlatformArr={game?.parent_platforms
                             .map((platform) => platform.platform)
                         } />
                         {/* {game?.parent_platforms.map((platform) => (
@@ -61,6 +58,7 @@ function GameCard(
                     </HStack>
                     <Heading fontSize="2xl">
                         {game?.name}
+                        <Emoji rating={game.rating_top} />
                     </Heading>
                 </CardBody>
 

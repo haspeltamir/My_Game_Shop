@@ -16,18 +16,20 @@ import { MdPhoneIphone, MdTabletMac } from 'react-icons/md';
 import { IconType } from 'react-icons';
 
 interface Props {
-    Platform?: Platform[];
+    PlatformArr?: Platform[];
 }
 
 // const Platform_Icon_List = (props: Props) => {
 function Platform_Icon_List(
-    { Platform }: Props) {
+    { PlatformArr }: Props) {
     // platform: { name, slug }
 
     // const icons: any = {
     // "[key: string]" is called index signature: what it does is it tells typescript 
-    //that the object will have a key of type string and a value of type IconType
-    const icons: { [key: string]: IconType } = {
+
+    //that the object will have any number of keys,  of type string and a value of type 
+    //IconType(the key name is not important[its a placeholder])
+    const iconsMap: { [key: string]: IconType } = {
         pc: FaWindows,
         playstation: FaPlaystation,
         xbox: FaXbox,
@@ -42,8 +44,8 @@ function Platform_Icon_List(
     return (
         <Fragment>
             <HStack spacing={2} marginY={2}>
-                {Platform?.map((platform) => (
-                    <Icon key={platform.id} as={icons[platform.slug]} color="blue.500" boxSize={6} />
+                {PlatformArr?.map((platform) => (
+                    <Icon key={platform.id} as={iconsMap[platform.slug]} color="blue.500" boxSize={6} />
                     // <Text key={platform.id}>{platform.name}</Text>
                 ))
                 }

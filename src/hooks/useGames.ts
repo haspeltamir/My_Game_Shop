@@ -22,10 +22,10 @@ export interface Game {
   an array of objects where each object
   has a property called platform which
   is an object with a property called name*/
-  parent_platforms: { platform: Platform }[];
-
+  parent_platforms: { platform: Platform }[]; //an array of objects where each object has a property called platform which is an platform object
+  rating_top: number; //whole number
   // released: string;
-  // rating: number;
+  // rating: number;//can be a decimal
 }
 
 /*
