@@ -25,9 +25,11 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://api.rawg.io/api",
+  // baseURL: "https://api.rawg.io/api",
+  baseURL: import.meta.env.VITE_SERVER_URL,
   params: {
-    key: "c04966c933e5495cb710054bb8af8809",
+    // key: import.meta.env.Private_Key,
+    key: import.meta.env.VITE_Private_Key_For_My_Game_Shop,
   },
 });
 

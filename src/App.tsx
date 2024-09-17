@@ -50,6 +50,12 @@ export interface GameQuery {
   sortOrder: string | null;
   searchText: string | null;
 }
+{
+  // console.log("env", import.meta.env.VITE_SERVER_URL)
+}
+{
+  // console.log("env", import.meta.env.VITE_Private_Key_For_My_Game_Shop)
+}
 
 function App() {
   // const [selectedGenres, setSelectedGenres] = useState<Genres | null>(null);
